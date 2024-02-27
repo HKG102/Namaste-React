@@ -1,21 +1,14 @@
 import React from "react";
 import  ReactDOM  from "react-dom/client";
 
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {}, "I'm an h1 tag"),
-    React.createElement("h2", {}, "I'm an h2 tag"),
-  ]),
-  React.createElement("div", { id: "child2" }, [
-    React.createElement("h1", {}, "I'm an h1 tag"),
-    React.createElement("h2", {}, "I'm an h2 tag"),
-  ]),
-]);
+// React.createElement => ReactElement-JS Object => HTMLElement(render)
 
-//JSX
+const heading = React.createElement("h1", {id: "heading"}, "Hi this is Heading.");
+console.log(heading);
+// JSX (transpiled before it reaches the JS Engine) - PARCEL transpiled it, using package Babel
 
-console.log(parent); // object
-
+// JSX => React.createElement => ReactElement-JS Object => HTMLElement(render)
+const jsxHeading = <h1 id="heading">Namaste from JSX</h1>;
+console.log(jsxHeading);// both heading and jsxHeading are same.
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(parent);
+root.render(jsxHeading);
