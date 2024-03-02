@@ -1,37 +1,81 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 
-// JSX => React.createElement => ReactElement-JS Object => HTMLElement(render)
-
-// React Element
-const jsxHeading = (
-<h1 className="head">Namaste from JSX</h1>
-);
-
-//React Component type:
-// 1. Class Based Component - OLD way
-// 2. Funtional component - NEW way
-
-
-// Functional Component (rturn a react eleement)
-
-const num = 6;
-
-const Title = () => (
-    <h1 className="head">Namaste from Title</h1>
-);
-
-const HeadingComponent = () => (
-    <div id="container">
-        <Title />
-        <h1>Namaste {jsxHeading}  React from {num} Functional Component </h1>
+const Header = () => {
+  return (
+    <div className="header">
+      <div className="logo-container">
+        <img
+          className="logo"
+          src="https://thumbs.dreamstime.com/b/food-delivery-logo-template-vector-icon-illustration-170869600.jpg"
+        ></img>
+      </div>
+      <div className="nav-items">
+        <ul>
+          <li>Home</li>
+          <li>About us</li>
+          <li>Contact Us</li>
+          <li>Cart</li>
+        </ul>
+      </div>
     </div>
-);
+  );
+};
 
-// const HeadingComponent2 = () => (
-//     <h1 className="heading">Namaste React from Functional Component </h1>
-// );
+const ReastaurantCard = () => {
+    return (
+        <div className="res-card" style={{backgroundColor: "#f0f0f0"}}>
+            <img className="res-logo"
+            alt="res-logo"
+            src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/f01666ac73626461d7455d9c24005cd4"
+            />
+
+            <h3>Meghna Foods</h3>
+            <h4>Biryani, North Indian, Asian</h4>
+            <h4>4.4 stars</h4>
+            <h4>34mins</h4>
+        </div>
+    );
+
+}
+
+const Body = () => {
+    return (
+        <div className="body">
+            <div className="search">Search</div>
+            <div className="res-container">
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+                <ReastaurantCard/>
+
+            </div>
+
+
+        </div>
+    );
+}
+
+const AppLayout = () => {
+  return (
+    <div className="app">
+      <Header />
+      <Body/>
+    </div>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// root.render(jsxHeading); //render react element 
-root.render(<HeadingComponent/>); // render functional component
+
+root.render(<AppLayout/>);
