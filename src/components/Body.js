@@ -3,8 +3,14 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
+
+  console.log("ren");
   // Local state Variable - Super powerful variable
   let [listOfREstaurants, setListOfRestaurant] = useState([]);
+  const [filterRes, setFilterRes]= useState([]);
+
+  //Whenever state cariables update, react triggers a reconciliation cycle(componenet re-rendered)
+  const [searchText, setSearchText] = useState("");
 
   // useEffect callback fucntion called after component is rendered
   useEffect(() => {
@@ -23,9 +29,10 @@ const Body = () => {
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants;
 
-    console.log(resListData);
+    // console.log(resListData);
 
     setListOfRestaurant(resListData);
+    setFilterRes(resListData);
   };
 
   //Normal JS variable
@@ -41,6 +48,25 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {setSearchText(e.target.value)}}
+          />
+          <button
+            onClick={() => {
+              //filter the restraunt cards and update the UI
+              console.log(searchText);
+              const filterRes = listOfREstaurants.filter((res)=> res.info.name.toLowerCase().includes(searchText.toLocaleLowerCase()));
+
+              setFilterRes(filterRes);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
@@ -55,7 +81,7 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {listOfREstaurants.map((restaurant) => (
+        {filterRes.map((restaurant) => (
           <RestaurantCard key={restaurant.info.id} resData={restaurant} />
         ))}
       </div>
